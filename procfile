@@ -1,1 +1,1 @@
-web: gunicorn app:finapp.py
+web: python finapp.py
