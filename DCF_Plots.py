@@ -17,8 +17,8 @@ import io
 import requests
 from sklearn.linear_model import LinearRegression
 
-def run_mcs(symbol, growth_rate, terminal_growth, iterations, risk_free_rate, beta,market_rate_return):
-    cash, bal, fin = scraping(symbol)
+def run_mcs(stock, growth_rate, terminal_growth, iterations, risk_free_rate, beta, market_rate_return):
+    cash, bal, fin = scraping(stock)
     sales, years = predict_sales(fin, growth_rate)
     debt=bal['Total Debt'][2]
     cost_debt = fin['Net Interest Income'][2]/debt

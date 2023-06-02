@@ -16,19 +16,18 @@ def index():
 @app.route('/callback/<endpoint>')
 def cb(endpoint):   
     if endpoint == "getStock":
-        return gm(request.args.get('data'),request.args.get('period'),request.args.get('interval'))
+        return gm(request.args.get('stock'),request.args.get('growth_rate'),request.args.get('terminal_growth'),request.args.get('iterations'),request.args.get('risk_free_rate'),request.args.get('beta'),request.args.get('market_rate_return'))
     elif endpoint == "getInfo":
-        symbol = request.args.get('data')
-        output_distribution=run_mcs(
-        symbol, 
-        growth_rate, 
-        terminal_growth, 
-        iterations, 
-        risk_free_rate, 
-        beta,
-        market_rate_return
-        )
-        return json.dumps(output_distribution)
+        ticker = request.args.get('data')
+        stock = request.args.get('stock')
+        growth_rate = request.args.get('growth_rate')
+        terminal_growth = request.args.get('terminal_growth')
+        iterations = request.args.get('iterations')
+        risk_free_rate = request.args.get('risk_free_rate')
+        beta = request.args.get('beta')
+        market_rate_return = request.args.get('market_rate_return')
+        st = yf.Ticker(ticker)
+        return json.dumps(st.info, stock, growth_rate, terminal_growth, iterations, risk_free_rate, beta, market_rate_return)
     else:
         return "Bad endpoint", 400
 

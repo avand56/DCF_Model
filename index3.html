@@ -12,7 +12,7 @@
 
     <script>
         async function callback() {
-            let Symbol = document.getElementById('symbol').value;
+            let Stock = document.getElementById('stock').value;
             let Growth_Rate = document.getElementById('growth_rate').value
             let Terminal_Growth = document.getElementById('terminal_growth').value
             let Iterations = document.getElementById('iterations').value
@@ -20,16 +20,13 @@
             let Beta = document.getElementById('beta').value
             let Market_Rate_Return = document.getElementById('market_rate_return').value
 
-            //alert(Stock+Period+Interval);
-            //return;
-            //let response = await fetch("/callback/getStock?data=" + Stock + "&period=" + Period + "&interval=" + Interval);
-            let response = await fetch("/callback/getStock?data=" + Symbol + "&growth_rate=" + Growth_Rate + "&terminal_growth=" + Terminal_Growth + "&iterations=" + Iterations + "&risk_free_rate=" + Risk_Free_Rate + "&beta=" + Beta + "&market_rate_return=" + Market_Rate_Return);
+            let response = await fetch("/callback/getStock?data=" + Stock + "&growth_rate=" + Growth_Rate + "&terminal_growth=" + Terminal_Growth + "&iterations=" + Iterations + "&risk_free_rate=" + Risk_Free_Rate + "&beta=" + Beta + "&market_rate_return=" + Market_Rate_Return);
             if (response.ok) {
                 let chartJson = await response.json();
                 if (response.ok) {
-                    //response = await fetch("/callback/getInfo?data=" + Stock);
-                    //let infoJson = await response.json();
-                    //info(infoJson);
+                    response = await fetch("/callback/getInfo?data=" + Stock);
+                    let infoJson = await response.json();
+                    info(infoJson);
                     Plotly.newPlot('chart', chartJson, {});
                 } else {
                     alert("HTTP-Error: " + response.status + "on getInfo");
@@ -39,20 +36,14 @@
             }
         }
         function info(json) {
-            let name = document.getElementById('symbol');
+            let name = document.getElementById('companyName');
+            name.innerHTML = json.shortName;
+            name = document.getElementById('symbol');
             name.innerHTML = json.symbol;
-            name = document.getElementById('growth_rate');
-            name.innerHTML = json.growth_rate;
-            name = document.getElementById('terminal_growth');
-            name.innerHTML = json.terminal_growth;
-            name = document.getElementById('iterations');
-            name.innerHTML = json.iterations;
-            name = document.getElementById('risk_free_rate');
-            name.innerHTML = json.risk_free_rate;
-            name = document.getElementById('beta');
-            name.innerHTML = json.beta;
-            name = document.getElementById('market_rate_return');
-            name.innerHTML = json.market_rate_return;
+            name = document.getElementById('dayHigh');
+            name.innerHTML = json.dayHigh;
+            name = document.getElementById('dayLow');
+            name.innerHTML = json.dayLow;
         }
     </script>
 </head>
@@ -66,7 +57,7 @@
 
         </div>
         <div class="row">
-            <div class="col"><b>Select stock ticker</b></div>
+            <div class="col"><b>Select stock</b></div>
             <div class="col">
                 <select id="stock" class="form-select" aria-label="Select" )>
                     <option selected value="MSFT">Microsoft</option>
@@ -184,21 +175,16 @@
                 <button type="button" class="btn btn-primary" onclick="callback()">Stock valuation</button>
             </div>
             <div class="w-100" style="padding:10px;text-align:right;font-size: small;"><i>Fair stock price modelled using a DCF model</i></div>
-
-            <div class="col-3"><p><b>Model Parameters</b></p>
+            
+            <div class="col-3"><p><b>Stock info</b></p>
                 <p>Symbol: <span id="symbol">N/A</span></p>
+                <p>Day High: <span id="dayHigh">N/A</span></p>
+                <p>Day Low: <span id="dayLow">N/A</span></p>  
                 <p>Growth Rate: <span id="growth_rate">N/A</span></p>
-                <p>Terminal_Growth: <span id="terminal_growth">N/A</span></p>
-                <p>Iterations: <span id="iterations">N/A</span></p>
-                <p>Risk_Free_Rate Rate: <span id="risk_free_rate">N/A</span></p>
-                <p>Beta: <span id="beta">N/A</span></p>
-                <p>Market_Rate_Return: <span id="Market_Rate_Return">N/A</span></p>
-
-
                 
             </div>
             <div class="col-9">
-                <h2 id="symbol"></h2>
+                <h2 id="companyName></h2>
                 <div id="chart" class="chart" style="height: 300px;border: 1px solid; 
                     box-shadow: 5px 5px 5px #888888;">
                 </div>
