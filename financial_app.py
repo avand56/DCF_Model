@@ -8,14 +8,16 @@ from DCF_Plots import run_mcs, do_plot
 
 app = Flask(__name__)
 
-@app.route('/callback', methods=['POST', 'GET'])
-def cb():
-    return gm(request.args.get('stock'),request.args.get('growth_rate'),request.args.get('terminal_growth'),request.args.get('iterations'),request.args.get('risk_free_rate'),request.args.get('beta'),request.args.get('market_rate_return'))
-
+@app.route('/callback/<endpoint>', methods=['POST', 'GET'])
+def cb(endpoint):
+    if endpoint == "getStock":
+        return gm(request.args.get('stock'),request.args.get('growth_rate'),request.args.get('terminal_growth'),request.args.get('iterations'),request.args.get('risk_free_rate'),request.args.get('beta'),request.args.get('market_rate_return'))
+    else:
+        return "Bad endpoint", 400
    
 @app.route('/')
 def index():
-    return render_template('chartsajax.html',  graphJSON=gm())
+    return render_template('index4.html')
 
 def gm(symbol='MSFT',growth_rate=0.10, terminal_growth=0.025, iterations=10000, risk_free_rate=0.04, beta=1, market_rate_return=0.075):
 

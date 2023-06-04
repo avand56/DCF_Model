@@ -13,14 +13,10 @@ app = Flask(__name__)
 def index():
     return render_template('index3.html')
 
-@app.route('/callback/<endpoint>')
+@app.route('/callback/')
 def cb(endpoint):   
     if endpoint == "getStock":
         return gm(request.args.get('stock'),request.args.get('growth_rate'),request.args.get('terminal_growth'),request.args.get('iterations'),request.args.get('risk_free_rate'),request.args.get('beta'),request.args.get('market_rate_return'))
-    elif endpoint == "getInfo":
-        stock = request.args.get('data')
-        st = yf.Ticker(stock)
-        return json.dumps(st.info)
     else:
         return "Bad endpoint", 400
 
