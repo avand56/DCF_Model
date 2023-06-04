@@ -27,3 +27,18 @@ def gm(country='United Kingdom'):
     #fig.data[0]['staticPlot']=True
     
     return graphJSON
+
+
+
+
+    elif endpoint == "getInfo":
+        ticker = request.args.get('data')
+        stock = request.args.get('stock')
+        growth_rate = request.args.get('growth_rate')
+        terminal_growth = request.args.get('terminal_growth')
+        iterations = request.args.get('iterations')
+        risk_free_rate = request.args.get('risk_free_rate')
+        beta = request.args.get('beta')
+        market_rate_return = request.args.get('market_rate_return')
+        st = yf.Ticker(ticker)
+        return json.dumps(st.info, stock, growth_rate, terminal_growth, iterations, risk_free_rate, beta, market_rate_return)

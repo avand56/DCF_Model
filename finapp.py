@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request
+from flask import Flask, config, render_template, request
 import pandas as pd
 import json
 import plotly
@@ -18,16 +18,9 @@ def cb(endpoint):
     if endpoint == "getStock":
         return gm(request.args.get('stock'),request.args.get('growth_rate'),request.args.get('terminal_growth'),request.args.get('iterations'),request.args.get('risk_free_rate'),request.args.get('beta'),request.args.get('market_rate_return'))
     elif endpoint == "getInfo":
-        ticker = request.args.get('data')
-        stock = request.args.get('stock')
-        growth_rate = request.args.get('growth_rate')
-        terminal_growth = request.args.get('terminal_growth')
-        iterations = request.args.get('iterations')
-        risk_free_rate = request.args.get('risk_free_rate')
-        beta = request.args.get('beta')
-        market_rate_return = request.args.get('market_rate_return')
-        st = yf.Ticker(ticker)
-        return json.dumps(st.info, stock, growth_rate, terminal_growth, iterations, risk_free_rate, beta, market_rate_return)
+        stock = request.args.get('data')
+        st = yf.Ticker(stock)
+        return json.dumps(st.info)
     else:
         return "Bad endpoint", 400
 
