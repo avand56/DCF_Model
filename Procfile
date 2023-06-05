@@ -1,1 +1,1 @@
-web: gunircorn -w 4 app:app
+web: gunircorn app:app
