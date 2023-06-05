@@ -1,1 +1,1 @@
-web: python app_fin.py
+web: gunircorn app:app_fin.py
