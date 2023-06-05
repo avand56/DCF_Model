@@ -19,7 +19,7 @@ def cb(endpoint):
     else:
         return "Bad endpoint", 400
 
-def gm(symbol='MSFT',growth_rate=0.10, terminal_growth=0.025, iterations=10000, risk_free_rate=0.04, beta=1, market_rate_return=0.075):
+def gm(symbol,growth_rate,terminal_growth, iterations, risk_free_rate, beta, market_rate_return):
 
     output_distribution=run_mcs(
         symbol, 
