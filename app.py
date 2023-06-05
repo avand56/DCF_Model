@@ -3,42 +3,44 @@ import pandas as pd
 import json
 import plotly
 import plotly.express as px
+import yfinance as yf
+from DCF_Plots import run_mcs, do_plot
 
 app = Flask(__name__)
 
-@app.route('/callback', methods=['POST', 'GET'])
-def cb():
-    return gm(request.args.get('data'))
-   
+# Define the root route
 @app.route('/')
 def index():
-    return render_template('chartsajax.html',  graphJSON=gm())
+    return render_template('index3.html')
 
-def gm(country='United Kingdom'):
-    df = pd.DataFrame(px.data.gapminder())
-
-    fig = px.line(df[df['country']==country], x="year", y="gdpPercap")
-    
-    
-    
-
-    graphJSON = json.dumps(fig, cls=plotly.utils.PlotlyJSONEncoder)
-    print(fig.data[0])
-    #fig.data[0]['staticPlot']=True
-    
-    return graphJSON
-
-
-
-
+@app.route('/callback/<endpoint>')
+def cb(endpoint):   
+    if endpoint == "getStock":
+        return gm(request.args.get('data'),request.args.get('growth_rate'),request.args.get('terminal_growth'),request.args.get('iterations'),request.args.get('risk_free_rate'),request.args.get('beta'),request.args.get('market_rate_return'))
     elif endpoint == "getInfo":
-        ticker = request.args.get('data')
-        stock = request.args.get('stock')
-        growth_rate = request.args.get('growth_rate')
-        terminal_growth = request.args.get('terminal_growth')
-        iterations = request.args.get('iterations')
-        risk_free_rate = request.args.get('risk_free_rate')
-        beta = request.args.get('beta')
-        market_rate_return = request.args.get('market_rate_return')
-        st = yf.Ticker(ticker)
-        return json.dumps(st.info, stock, growth_rate, terminal_growth, iterations, risk_free_rate, beta, market_rate_return)
+        stock = request.args.get('data')
+        st = yf.Ticker(stock)
+        return json.dumps(st.info)
+    else:
+        return "Bad endpoint", 400
+
+# Return the JSON data for the Plotly graph
+def gm(stock,growth_rate, terminal_growth, iterations, risk_free_rate, beta, market_rate_return):
+
+    output_distribution=run_mcs(
+        stock, 
+        growth_rate, 
+        terminal_growth, 
+        iterations, 
+        risk_free_rate, 
+        beta,
+        market_rate_return
+        )
+  
+    # Create a histogram
+    fig = px.histogram(output_distribution,
+        nbins=50, template="seaborn")
+
+    # Create a JSON representation of the graph
+    graphJSON = json.dumps(fig, cls=plotly.utils.PlotlyJSONEncoder)
+    return graphJSON
