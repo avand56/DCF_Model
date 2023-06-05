@@ -6,6 +6,7 @@ import pandas as pd
 import json
 import plotly
 import plotly.express as px
+import yfinance as yf
 app = Flask(__name__)
 
 @app.route('/plots/DCF/DCF_Histograms', methods=['GET','POST'])
