@@ -14,7 +14,7 @@ def index():
 
 @app.route('/stocks', methods=['POST', 'GET'])
 def cb():
-        return gm(request.form.get('symbol'),float(request.form.get('growth_rate')),float(request.form.get('terminal_growth')),int(request.form.get('iterations')),float(request.form.get('risk_free_rate')),float(request.form.get('beta')),float(request.form.get('market_rate_return')))
+        return gm(request.values.get('symbol'),float(request.values.get('growth_rate')),float(request.values.get('terminal_growth')),int(request.values.get('iterations')),float(request.values.get('risk_free_rate')),float(request.values.get('beta')),float(request.values.get('market_rate_return')))
 
 def gm(symbol,growth_rate,terminal_growth,iterations,risk_free_rate,beta,market_rate_return):
 
