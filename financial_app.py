@@ -14,11 +14,11 @@ def index():
 
 @app.route('/stocks', methods=['POST', 'GET'])
 def cb():
-        return gm(request.form.get('data'))
+        return gm()
 
-def gm(data):
+def gm():
 
-    symbol=request.get_data('symbol')
+    symbol=request.form.get('symbol')
     growth_rate=float(request.form.get('growth_rate'))
     terminal_growth=float(request.form.get('terminal_growth'))
     iterations=int(request.form.get('iterations'))
