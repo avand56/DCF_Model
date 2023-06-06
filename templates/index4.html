@@ -11,7 +11,7 @@
     <title></title>
 
     <script>
-        async function callback() {
+        function stocks() {
             let Stock = document.getElementById('stock').value;
             let Growth_Rate = document.getElementById('growth_rate').value;
             let Terminal_Growth = document.getElementById('terminal_growth').value;
@@ -19,19 +19,19 @@
             let Risk_Free_Rate = document.getElementById('risk_free_rate').value;
             let Beta = document.getElementById('beta').value;
             let Market_Rate_Return = document.getElementById('market_rate_return').value;
-
-            let response = await fetch("/callback/getStock?data=" + Stock + "&growth_rate=" + Growth_Rate + "&terminal_growth=" + Terminal_Growth + "&iterations=" + Iterations + "&risk_free_rate=" + Risk_Free_Rate + "&beta=" + Beta + "&market_rate_return=" + Market_Rate_Return);
+            
+            let response = fetch("/stocks/getStock?stock=" + Stock + "&growth_rate=" + Growth_Rate + "&terminal_growth=" + Terminal_Growth + "&iterations=" + Iterations + "&risk_free_rate=" + Risk_Free_Rate + "&beta=" + Beta + "&market_rate_return=" + Market_Rate_Return);
             if (response.ok) {
-                let chartJson = await response.json();
+                let chartJson = response.json();
                 if (response.ok) {
                     Plotly.newPlot('chart', chartJson, {});
-                } 
-                else {
-                    alert("HTTP-Error: " + response.status + "on getStock");
                 }
             } 
+            else {
+                alert("HTTP-Error: " + response.status + "on getStock");
+            }
         }
-    
+        
     </script>
 </head>
 
@@ -160,14 +160,14 @@
                 </select>
             </div>
             <div class="col">
-                <button type="button" class="btn btn-primary" onclick="callback()">Stock valuation</button>
+                <button type="button" class="btn btn-primary" onclick="stocks()">Stock Valuation</button>
             </div>
             <div class="w-100" style="padding:10px;text-align:right;font-size: small;"><i>Fair stock 
                 price modelled using a DCF model</i></div>
                 
             </div>
             <div class="col-9">
-                <h2 id="companyName"></h2>
+                <h2 id="symbol"></h2>
                 <div id="chart" class="chart" style="height: 300px;border: 1px solid; 
                     box-shadow: 5px 5px 5px #888888;">
                 </div>
@@ -177,7 +177,7 @@
     </div>
 
 
-    <script>callback();</script>
+    <script>stocks();</script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4"
         crossorigin="anonymous"></script>
