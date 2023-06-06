@@ -10,16 +10,21 @@ app = Flask(__name__)
 
 @app.route('/')
 def index():
-    return render_template('index4.html')
+    return render_template('hi.html')
 
-@app.route('/stocks/<endpoint>', methods=['POST', 'GET'])
-def cb(endpoint):
-    if endpoint == "getStock":
-        return gm(request.args.get('stock'),request.args.get('growth_rate'),request.args.get('terminal_growth'),request.args.get('iterations'),request.args.get('risk_free_rate'),request.args.get('beta'),request.args.get('market_rate_return'))
-    else:
-        return "Bad endpoint", 400
+@app.route('/stocks', methods=['POST', 'GET'])
+def cb():
+        return gm(request.args.get('data'))
 
-def gm(symbol,growth_rate,terminal_growth, iterations, risk_free_rate, beta, market_rate_return):
+def gm(data):
+    
+    symbol=data['symbol']
+    growth_rate=data['growth_rate']
+    terminal_growth=data['terminal_growth']
+    iterations=data['iterations']
+    risk_free_rate=data['risk_free_rate']
+    beta=data['beta']
+    market_rate_return=data['market_rate_return']
 
     output_distribution=run_mcs(
         symbol, 
