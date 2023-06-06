@@ -14,17 +14,17 @@ def index():
 
 @app.route('/stocks', methods=['POST', 'GET'])
 def cb():
-        return gm(request.args.get('data'))
+        return gm(request.form.get('data'))
 
-def gm(data):
-    
-    symbol=data['symbol']
-    growth_rate=data['growth_rate']
-    terminal_growth=data['terminal_growth']
-    iterations=data['iterations']
-    risk_free_rate=data['risk_free_rate']
-    beta=data['beta']
-    market_rate_return=data['market_rate_return']
+def gm():
+
+    symbol=request.form.get('symbol')
+    growth_rate=float(request.form.get('growth_rate'))
+    terminal_growth=float(request.form.get('terminal_growth'))
+    iterations=int(request.form.get('iterations'))
+    risk_free_rate=float(request.form.get('risk_free_rate'))
+    beta=float(request.form.get('beta'))
+    market_rate_return=float(request.form.get('market_rate_return'))
 
     output_distribution=run_mcs(
         symbol, 

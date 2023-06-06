@@ -13,18 +13,18 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script>
         function stock_value() {
-            var Stock = document.getElementById('stock').value;
-            var Growth_Rate = document.getElementById('growth_rate').value;
-            var Terminal_Growth = document.getElementById('terminal_growth').value;
-            var Iterations = document.getElementById('iterations').value;
-            var Risk_Free_Rate = document.getElementById('risk_free_rate').value;
-            var Beta = document.getElementById('beta').value;
-            var Market_Rate_Return = document.getElementById('market_rate_return').value;
+            var stock = document.getElementById('stock').value;
+            var growth_rate = document.getElementById('growth_rate').value;
+            var terminal_growth = document.getElementById('terminal_growth').value;
+            var iterations = document.getElementById('iterations').value;
+            var risk_free_rate = document.getElementById('risk_free_rate').value;
+            var beta = document.getElementById('beta').value;
+            var market_rate_return = document.getElementById('market_rate_return').value;
 
             $.getJSON({
                 url: '/stocks',
                 type: 'POST',
-                data: {'symbol': Stock, 'growth_rate': Growth_Rate, 'terminal_growth': Terminal_Growth, 'iterations': Iterations, 'risk_free_rate': Risk_Free_Rate, 'beta': Beta, 'market_rate_return': Market_Rate_Return},
+                data: {'symbol': stock, 'growth_rate': growth_rate, 'terminal_growth': terminal_growth, 'iterations': iterations, 'risk_free_rate': risk_free_rate, 'beta': beta, 'market_rate_return': market_rate_return},
                 success: function (result) {
                     Plotly.newPlot('chart', result, {staticPlot: true});;
                 }
