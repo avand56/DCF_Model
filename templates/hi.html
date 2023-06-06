@@ -12,7 +12,7 @@
     <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script>
-        function stock_value() {
+        function stock_value(stock, growth_rate, terminal_growth, iterations, risk_free_rate, beta, market_rate_return) {
             var stock = document.getElementById('stock').value;
             var growth_rate = document.getElementById('growth_rate').value;
             var terminal_growth = document.getElementById('terminal_growth').value;
@@ -158,7 +158,7 @@
                 </select>
             </div>
             <div class="col">
-                <button class="btn btn-primary" onclick="stock_value()">Stock Valuation</button>
+                <button class="btn btn-primary" onclick="stock_value(stock, growth_rate, terminal_growth, iterations, risk_free_rate, beta, market_rate_return)">Stock Valuation</button>
             </div>
             <div class="col-9">
                 <h2 id="symbol"></h2>

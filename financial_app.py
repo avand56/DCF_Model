@@ -16,9 +16,9 @@ def index():
 def cb():
         return gm(request.form.get('data'))
 
-def gm():
+def gm(data):
 
-    symbol=request.form.get('symbol')
+    symbol=request.get_data('symbol')
     growth_rate=float(request.form.get('growth_rate'))
     terminal_growth=float(request.form.get('terminal_growth'))
     iterations=int(request.form.get('iterations'))
