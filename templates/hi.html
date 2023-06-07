@@ -21,7 +21,7 @@
             var beta = document.getElementById('beta').value;
             var market_rate_return = document.getElementById('market_rate_return').value;
 
-            let response = fetch("/stocks/getStock?stock=" + stock + "&growth_rate=" + growth_rate + "&terminal_growth=" + terminal_growth + "&iterations=" + iterations + "&risk_free_rate=" + risk_free_rate + "&beta=" + beta + "&market_rate_return=" + market_rate_return);
+            let response = fetch("/callback/getStock?stock=" + stock + "&growth_rate=" + growth_rate + "&terminal_growth=" + terminal_growth + "&iterations=" + iterations + "&risk_free_rate=" + risk_free_rate + "&beta=" + beta + "&market_rate_return=" + market_rate_return);
             if (response.ok) {
                 let chartJson = await response.json();
                 if (response.ok) {
@@ -172,7 +172,7 @@
                     <option value="0.030">30%</option>
 
                 </select>
-                
+
             </div>
             <div class="col">
                 <button type="button" class="btn btn-primary" onclick="callback()">Fetch stock</button>
