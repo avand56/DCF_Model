@@ -25,23 +25,12 @@
                     //let infoJson = await response.json();
                     //info(infoJson);
                     Plotly.newPlot('chart', chartJson, {});
-                } else {
-                    alert("HTTP-Error: " + response.status + "on getInfo");
-                }
+                } 
             } else {
                 alert("HTTP-Error: " + response.status + "on getStock");
             }
         }
-        function info(json) {
-            let name = document.getElementById('companyName');
-            name.innerHTML = json.shortName;
-            name = document.getElementById('symbol');
-            name.innerHTML = json.symbol;
-            name = document.getElementById('dayHigh');
-            name.innerHTML = json.dayHigh;
-            name = document.getElementById('dayLow');
-            name.innerHTML = json.dayLow;
-        }
+    
     </script>
 </head>
 
@@ -104,13 +93,6 @@
             </div>
             <div class="w-100" style="padding:10px;text-align:right;font-size: small;"><i>Note: not all intervals are
                     valid for all periods</i></div>
-
-            <div class="col-3"><p><b>Stock info</b></p>
-                <p>yFinance is not currently reliably retrieving this data, so it has been disabled for now.</p>
-                <p>Symbol: <span id="symbol">N/A</span></p>
-                <p>Day High: <span id="dayHigh">N/A</span></p>
-                <p>Day Low: <span id="dayLow">N/A</span></p>
-
                 
             </div>
             <div class="col-9">

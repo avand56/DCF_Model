@@ -17,11 +17,7 @@ def index():
 @app.route('/callback/<endpoint>')
 def cb(endpoint):   
     if endpoint == "getStock":
-        return gm(request.args.get('data'),request.args.get('period'),request.args.get('interval'))
-    elif endpoint == "getInfo":
-        stock = request.args.get('data')
-        st = yf.Ticker(stock)
-        return json.dumps(st.info)
+        return gm(request.args.get('stock'),request.args.get('period'),request.args.get('interval'))
     else:
         return "Bad endpoint", 400
 
