@@ -12,7 +12,7 @@
     <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script>
-        function cb() {
+        function cb(symbol,growth_rate,terminal_growth,iterations,risk_free_rate,beta,market_rate_return) {
             $.getJSON({
                 url: '/stocks'
                 type: 'POST'
@@ -71,7 +71,7 @@
                 <input type="text" id="market_rate_return" name="market_rate_return">
             </div>
             <div class="col">
-                <button type="button" class="btn btn-primary" onclick="cb()">Fetch Model</button>
+                <button type="button" class="btn btn-primary" onclick="cb(symbol,growth_rate,terminal_growth,iterations,risk_free_rate,beta,market_rate_return)">Fetch Model</button>
             </div>
             </div>
             <div class="col-8">
@@ -88,7 +88,7 @@
 
 </body>
 <script>
-    cb();
+    cb("MSFT",0.10,0.02,10000,0.04,1.00,0.075)
 </script>
 
 </html>
