@@ -1,1 +1,1 @@
-web: gunicorn financial_app:app
+web: gunicorn app:app

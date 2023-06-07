@@ -12,7 +12,7 @@ app = Flask(__name__)
 @app.route('/')
 def index():
 
-    return render_template('index5.html')
+    return render_template('index.html')
 
 @app.route('/callback/<endpoint>')
 def cb(endpoint):   
