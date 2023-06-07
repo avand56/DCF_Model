@@ -7,7 +7,7 @@
         function cb(symbol) {
             $.getJSON({
                 url: "/stocks",
-                data: {'symbol': symbol},
+                data: { 'data': symbol },
                 success: function (result) {
                     Plotly.react('chart', result, {});;
                 }

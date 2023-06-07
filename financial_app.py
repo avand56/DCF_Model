@@ -9,11 +9,8 @@ from DCF_Plots import run_mcs, do_plot
 app = Flask(__name__)
 
 @app.route('/stocks', methods = ['POST', 'GET'])
-def cb(symbol):
-    if request.method == 'POST':
-        return gm(request.form.get('symbol'))
-    elif request.method == 'GET':
-        return gm(request.args.get('symbol'))
+def cb():
+    return gm(request.args.get('data'))
 
     
 @app.route('/')
