@@ -8,13 +8,13 @@ from DCF_Plots import run_mcs, do_plot
 
 app = Flask(__name__)
 
-@app.route('/')
-def index():
-    return render_template('hi.html')
-
 @app.route('/stocks', methods=['POST', 'GET'])
 def cb():
         return gm(request.values.get('symbol'),float(request.values.get('growth_rate')),float(request.values.get('terminal_growth')),int(request.values.get('iterations')),float(request.values.get('risk_free_rate')),float(request.values.get('beta')),float(request.values.get('market_rate_return')))
+
+@app.route('/')
+def index():
+    return render_template('hi.html')
 
 def gm(symbol,growth_rate,terminal_growth,iterations,risk_free_rate,beta,market_rate_return):
 
