@@ -43,133 +43,47 @@
             </div>
 
         </div>
-        <div class="row">
-            <div class="col"><b>Stock</b></div>
+            <div>
+            <div class="col"><b>Stock:</b></div>
             <div class="col">
-                <select id="symbol" class="form-select" aria-label="Select">
-                    <option selected value="MSFT">Microsoft</option>
-                    <option value="META">Facebook</option>
-                    <option value="AAPL">Apple</option>
-                    <option value="GOOGL">Google</option>
-                </select>
+                <input type="text" id="symbol" name="symbol">
             </div>
-            <div class="col"><b>Growth Rate</b></div>
+            <div class="col"><b>Growth Rate:</b></div>
 
             <div class="col">
-                <select id="growth_rate" class="form-select" aria-label="Select">
-                    <option selected value="0.1">10%</option>
-                    <option value="0.02">2%</option>
-                    <option value="0.04">4%</option>
-                    <option value="0.06">6%</option>
-                    <option value="0.08">8%</option>
-                    <option value="0.12">12%</option>
-                    <option value="0.15">15%</option>
-                    <option value="0.20">20%</option>
-                    <option value="0.30">30%</option>
-                    <option value="0.50">50%</option>
-                    <option value="1.0">100%</option>
-                </select>
+                <input type="text" id="growth_rate" name="growth_rate">
             </div>
-            <div class="col"><b>Terminal Growth</b></div>
+            <div class="col"><b>Terminal Growth:</b></div>
 
             <div class="col">
-                <select id="terminal_growth_rate" class="form-select" aria-label="Select">
-                    <option selected value="0.02">2%</option>
-                    <option value="0.005">0.5%</option>
-                    <option value="0.01">1.0%</option>
-                    <option value="0.015">1.5%</option>
-                    <option value="0.025">2.5%</option>
-                    <option value="0.03">3%</option>
-                    <option value="0.04">4%</option>
-                    <option value="0.06">6%</option>
-                    <option value="0.08">8%</option>
-                    <option value="0.12">12%</option>
-                    <option value="0.15">15%</option>
-                    <option value="0.20">20%</option>
-                    <option value="0.30">30%</option>
-                    <option value="0.50">50%</option>
-                    <option value="1.0">100%</option>
-                </select>
+                <input type="text" id="terminal_growth_rate" name="terminal_growth_rate">
             </div>
-            <div class="col"><b>Iterations</b></div>
+            <div class="col"><b>Iterations:</b></div>
 
             <div class="col">
-                <select id="iterations" class="form-select" aria-label="Select">
-                    <option selected value="10000">10000</option>
-                    <option value="1000">1000</option>
-                    <option value="5000">5000</option>
-                    <option value="20000">20000</option>
-                </select>
+                <input type="text" id="iterations" name="iterations">
             </div>
-            <div class="col"><b>Risk Free Rate</b></div>
+            <div class="col"><b>Risk Free Rate:</b></div>
 
             <div class="col">
-                <select id="risk_free_rate" class="form-select" aria-label="Select">
-                    <option selected value="0.035">3.5%</option>
-                    <option value="0.001">0.1%</option>
-                    <option value="0.0025">0.25%</option>
-                    <option value="0.005">0.50%</option>
-                    <option value="0.01">1%</option>
-                    <option value="0.015">1.5%</option>
-                    <option value="0.02">2%</option>
-                    <option value="0.025">2.5%</option>
-                    <option value="0.03">3%</option>
-                    <option value="0.04">4%</option>
-                    <option value="0.045">4.5%</option>
-                    <option value="0.005">5%</option>
-                </select>
+                <input type="text" id="risk_free_rate" name="risk_free_rate">
             </div>
-            <div class="col"><b>Beta</b></div>
+            <div class="col"><b>Beta:</b></div>
 
             <div class="col">
-                <select id="beta" class="form-select" aria-label="Select">
-                    <option selected value="0.25">1.00</option>
-                    <option value="0.25">0.25</option>
-                    <option value="0.50">0.50</option>
-                    <option value="0.75">0.75</option>
-                    <option value="1.25">1.25</option>
-                    <option value="1.50">1.50</option>
-                    <option value="1.75">1.75</option>
-                    <option value="2.00">2.00</option>
-                    <option value="2.50">2.50</option>
-                </select>
+                <input type="text" id="beta" name="beta">
             </div>
-            <div class="col"><b>Market Rate</b></div>
+            <div class="col"><b>Market Rate:</b></div>
 
             <div class="col">
-                <select id="market_rate_return" class="form-select" aria-label="Select">
-                    <option selected value="0.075">7.5%</option>
-                    <option value="0.00">0%</option>
-                    <option value="-0.002">-2%</option>
-                    <option value="-0.004">-4%</option>
-                    <option value="-0.006">-6%</option>
-                    <option value="-0.008">-8%</option>
-                    <option value="-0.009">-9%</option>
-                    <option value="-0.010">-10%</option>
-                    <option value="-0.012">-12%</option>
-                    <option value="-0.015">-15%</option>
-                    <option value="-0.020">-20%</option>
-                    <option value="0.002">2%</option>
-                    <option value="0.004">4%</option>
-                    <option value="0.006">6%</option>
-                    <option value="0.008">8%</option>
-                    <option value="0.009">9%</option>
-                    <option value="0.010">10%</option>
-                    <option value="0.012">12%</option>
-                    <option value="0.015">15%</option>
-                    <option value="0.020">20%</option>
-                    <option value="0.025">25%</option>
-                    <option value="0.030">30%</option>
-
-                </select>
-
+                <input type="text" id="market_rate_return" name="market_rate_return">
             </div>
             <div class="col">
-                <button type="button" class="btn btn-primary" onclick="cb()">Fetch stock</button>
+                <button type="button" class="btn btn-primary" onclick="cb()">Fetch Model</button>
             </div>
             </div>
-            <div class="col-9">
-                <h2 id="symbol"></h2>
+            <div class="col-8">
+                <h2 id="Histogram"></h2>
                 <div id="chart" class="chart" style="height: 300px;border: 1px solid; 
                     box-shadow: 5px 5px 5px #888888;">
                 </div>
