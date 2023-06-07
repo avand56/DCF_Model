@@ -8,13 +8,20 @@ from DCF_Plots import run_mcs, do_plot
 
 app = Flask(__name__)
 
-@app.route('/stocks', methods=['POST', 'GET'])
-def cb():
-        return gm(request.values.get('symbol'),float(request.values.get('growth_rate')),float(request.values.get('terminal_growth')),int(request.values.get('iterations')),float(request.values.get('risk_free_rate')),float(request.values.get('beta')),float(request.values.get('market_rate_return')))
-
 @app.route('/')
 def index():
     return render_template('hi.html')
+    
+@app.route('/callback/<endpoint>')
+def cb(endpoint):
+    if endpoint == "getStock":
+        return gm(request.args.get('stock'),request.args.get('growth_rate'),request.args.get('terminal_growth'),request.args.get('iterations'),request.args.get('risk_free_rate'),request.args.get('beta'),request.args.get('market_rate_return'))
+    elif endpoint == "getInfo":
+        stock = request.values.get('stock')
+        st = yf.Ticker(stock)
+        return json.dumps(st.info)
+    else:
+        return "Bad endpoint", 400
 
 def gm(symbol,growth_rate,terminal_growth,iterations,risk_free_rate,beta,market_rate_return):
 
