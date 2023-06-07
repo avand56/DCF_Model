@@ -13,14 +13,6 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script>
         function cb() {
-            var symbol = document.getElementById('symbol').value;
-            var growth_rate = document.getElementById('growth_rate').value;
-            var terminal_growth = document.getElementById('terminal_growth').value;
-            var iterations = document.getElementById('iterations').value;
-            var risk_free_rate = document.getElementById('risk_free_rate').value;
-            var beta = document.getElementById('beta').value;
-            var market_rate_return = document.getElementById('market_rate_return').value;
-
             $.getJSON({
                 url: '/stocks'
                 type: 'POST'
