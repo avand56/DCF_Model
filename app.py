@@ -18,6 +18,10 @@ def index():
 def cb(endpoint):   
     if endpoint == "getStock":
         return gm(request.args.get('stock'),request.args.get('period'),request.args.get('interval'))
+    elif endpoint == "getInfo":
+        stock = request.args.get('data')
+        st = yf.Ticker(stock)
+        return json.dumps(st.info)
     else:
         return "Bad endpoint", 400
 
