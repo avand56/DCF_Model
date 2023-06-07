@@ -4,7 +4,7 @@
     <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script>
-        function cb(selection) {
+        function cb(symbol) {
             $.getJSON({
                 url: "/stocks",
                 data: {'symbol': symbol},
@@ -19,7 +19,7 @@
 <body style="font-family:arial, sans-serif">
     <h1>Statistical Stock Valuation Model</h1>
     <h2>Input Ticker</h2>
-    <input type="text" id="symbol" name="symbol" onchange="cb(this.value)">
+    <input type="text" id="fname" name="fname" onchange="cb(this.value)">
     <div id="chart" class="chart"></div>
     <div id="png_chart"></div>
 </body>

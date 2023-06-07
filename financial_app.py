@@ -20,7 +20,7 @@ def cb(symbol):
 def index():
     return render_template('charts.html')
 
-def gm(symbol):
+def gm(symbol="MSFT"):
 
     output_distribution=run_mcs(
         symbol, 

@@ -3,47 +3,21 @@ import pandas as pd
 import json
 import plotly
 import plotly.express as px
-import yfinance as yf
 
 app = Flask(__name__)
 
-
-# Define the root route
+@app.route('/callback', methods=['POST', 'GET'])
+def cb():
+    return gm(request.args.get('data'))
+   
 @app.route('/')
 def index():
+    return render_template('chartsajax.html')#,  graphJSON=gm())
 
-    return render_template('index.html')
+def gm(country='United Kingdom'):
+    df = pd.DataFrame(px.data.gapminder())
 
-@app.route('/callback/<endpoint>')
-def cb(endpoint):   
-    if endpoint == "getStock":
-        return gm(request.args.get('stock'),request.args.get('period'),request.args.get('interval'))
-    elif endpoint == "getInfo":
-        stock = request.args.get('data')
-        st = yf.Ticker(stock)
-        return json.dumps(st.info)
-    else:
-        return "Bad endpoint", 400
+    fig = px.line(df[df['country']==country], x="year", y="gdpPercap", title=country)
 
-# Return the JSON data for the Plotly graph
-def gm(stock,period, interval):
-    st = yf.Ticker(stock)
-  
-    # Create a line graph
-    df = st.history(period=(period), interval=interval)
-    df=df.reset_index()
-    df.columns = ['Date-Time']+list(df.columns[1:])
-    max = (df['Open'].max())
-    min = (df['Open'].min())
-    range = max - min
-    margin = range * 0.05
-    max = max + margin
-    min = min - margin
-    fig = px.area(df, x='Date-Time', y="Open",
-        hover_data=("Open","Close","Volume"), 
-        range_y=(min,max), template="seaborn" )
-
-
-    # Create a JSON representation of the graph
     graphJSON = json.dumps(fig, cls=plotly.utils.PlotlyJSONEncoder)
     return graphJSON
