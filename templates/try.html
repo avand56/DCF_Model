@@ -12,7 +12,7 @@
     <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script>
-        function stocks() {
+        function cb() {
             var symbol = document.getElementById('symbol').value;
             var growth_rate = document.getElementById('growth_rate').value;
             var terminal_growth = document.getElementById('terminal_growth').value;
@@ -165,7 +165,7 @@
 
             </div>
             <div class="col">
-                <button type="button" class="btn btn-primary" onclick="stocks()">Fetch stock</button>
+                <button type="button" class="btn btn-primary" onclick="cb()">Fetch stock</button>
             </div>
             </div>
             <div class="col-9">
@@ -182,7 +182,7 @@
 
 </body>
 <script>
-    stocks();
+    cb();
 </script>
 
 </html>
