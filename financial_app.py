@@ -9,23 +9,27 @@ from DCF_Plots import run_mcs, do_plot
 app = Flask(__name__)
 
 @app.route('/stocks', methods = ['POST', 'GET'])
-def cb():
-        return gm(request.form.get('symbol'),request.form.get('growth_rate'),request.form.get('terminal_growth'),request.form.get('iterations'),request.form.get('risk_free_rate'),request.form.get('beta'),request.form.get('market_rate_return'))
+def cb(symbol):
+    if request.method == 'POST':
+        return gm(request.form.get('symbol'))
+    elif request.method == 'GET':
+        return gm(request.args.get('symbol'))
+
     
 @app.route('/')
 def index():
-    return render_template('try.html')
+    return render_template('charts.html')
 
-def gm(symbol,growth_rate,terminal_growth,iterations,risk_free_rate,beta,market_rate_return):
+def gm(symbol):
 
     output_distribution=run_mcs(
         symbol, 
-        growth_rate, 
-        terminal_growth, 
-        iterations, 
-        risk_free_rate, 
-        beta,
-        market_rate_return
+        0.10, 
+        0.04, 
+        10000, 
+        0.04, 
+        1.00,
+        0.08
         )
   
     # Create a histogram

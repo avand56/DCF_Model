@@ -7,7 +7,7 @@
         function cb(selection) {
             $.getJSON({
                 url: "/stocks",
-                data: {'symbol': symbol, 'growth_rate': growth_rate, 'terminal_growth': terminal_growth, 'iterations': iterations, 'risk_free_rate': risk_free_rate, 'beta': beta, 'market_rate_return': market_rate_return},
+                data: {'symbol': symbol},
                 success: function (result) {
                     Plotly.react('chart', result, {});;
                 }
@@ -17,14 +17,14 @@
 </head>
 
 <body style="font-family:arial, sans-serif">
-    <h1>GDP per Capita Over Time</h1>
-    <h2>Choose your country</h2>
-    <input type="text" id="fname" name="fname" onchange="cb(this.value)">
+    <h1>Statistical Stock Valuation Model</h1>
+    <h2>Input Ticker</h2>
+    <input type="text" id="symbol" name="symbol" onchange="cb(this.value)">
     <div id="chart" class="chart"></div>
     <div id="png_chart"></div>
 </body>
 
 <script>
-    cb("United Kingdom");
+    cb("MSFT");
 </script>
 </html>
