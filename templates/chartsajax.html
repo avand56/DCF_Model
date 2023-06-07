@@ -4,9 +4,11 @@
     <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script>
-        function cb(selection) {
+        function stock_value(symbol, growth_rate, terminal_growth, iterations, risk_free_rate, beta, market_rate_return) {
             $.getJSON({
-                url: "/callback", data: { 'symbol': selection }, success: function (result) {
+                url: "/stocks",
+                data: {'symbol': symbol, 'growth_rate': growth_rate, 'terminal_growth': terminal_growth, 'iterations': iterations, 'risk_free_rate': risk_free_rate, 'beta': beta, 'market_rate_return': market_rate_return},
+                success: function (result) {
                     Plotly.newPlot('chart', result, {staticPlot: true});;
                 }
             });
@@ -15,10 +17,9 @@
 </head>
 
 <body style="font-family:arial, sans-serif">
-    <h1>GDP per Capita Over Time</h1>
-    <h2>Choose your country</h2>
-    <p>Make sure you spell it correctly with capital letter(s), e.g. United Kingdom</p>
-    <input type="text" id="fname" name="fname" onchange="cb(this.value)">
+    <h1>DCF Model</h1>
+    <h2>Choose Ticker Symbol</h2>
+    <input type="text" id="fname" name="fname" click="cb(this.value)">
     <div id="chart" class="chart"></div>
 </body>
 

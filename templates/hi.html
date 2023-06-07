@@ -23,7 +23,6 @@
 
             $.getJSON({
                 url: '/stocks',
-                type: 'POST',
                 data: {'symbol': symbol, 'growth_rate': growth_rate, 'terminal_growth': terminal_growth, 'iterations': iterations, 'risk_free_rate': risk_free_rate, 'beta': beta, 'market_rate_return': market_rate_return},
                 success: function (result) {
                     Plotly.newPlot('chart', result, {staticPlot: true});;
@@ -158,7 +157,7 @@
                 </select>
             </div>
             <div class="col">
-                <button class="btn btn-primary" onclick="stock_value(symbol, growth_rate, terminal_growth, iterations, risk_free_rate, beta, market_rate_return)">Stock Valuation</button>
+                <button class="btn btn-primary" click="stock_value(symbol, growth_rate, terminal_growth, iterations, risk_free_rate, beta, market_rate_return)">Stock Valuation</button>
             </div>
             <div class="col-9">
                 <h2 id="symbol"></h2>
@@ -167,7 +166,7 @@
                 </div>
             </div>
         </div>
-
+    
     </div>
 
 </body>
@@ -175,6 +174,6 @@
 <script>
     d = {{ graphJSON | safe }};
     Plotly.newPlot('chart', d, {});
-    
+
 </script>
 </html>
