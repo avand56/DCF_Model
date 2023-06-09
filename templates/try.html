@@ -12,13 +12,12 @@
     <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script>
-        function cb(symbol,growth_rate,terminal_growth,iterations,risk_free_rate,beta,market_rate_return) {
+        function cb(symbol) {
             $.getJSON({
-                url: '/stocks'
-                type: 'POST'
-                data: {'data': symbol, 'growth': growth_rate, 'terminal': terminal_growth, 'iter': iterations, 'risk_free': risk_free_rate, 'beta_': beta, 'market_rate': market_rate_return},
-                success: function(response) {
-                    Plotly.react('chart', response, {});;
+                url: "/stocks",
+                data: { 'data': symbol },
+                success: function (result) {
+                    Plotly.react('chart', result, {});;
                 }
             });
         }
@@ -38,46 +37,16 @@
             <div>
             <div class="col"><b>Stock:</b></div>
             <div class="col">
-                <input type="text" id="symbol" name="symbol">
-            </div>
-            <div class="col"><b>Growth Rate:</b></div>
-
+                <input type="text" id="fname" name="fname">
             <div class="col">
-                <input type="text" id="growth_rate" name="growth_rate">
+                <button type="button" class="btn btn-primary" onclick="cb(this.value)">Fetch stock</button>
             </div>
-            <div class="col"><b>Terminal Growth:</b></div>
-
-            <div class="col">
-                <input type="text" id="terminal_growth_rate" name="terminal_growth_rate">
-            </div>
-            <div class="col"><b>Iterations:</b></div>
-
-            <div class="col">
-                <input type="text" id="iterations" name="iterations">
-            </div>
-            <div class="col"><b>Risk Free Rate:</b></div>
-
-            <div class="col">
-                <input type="text" id="risk_free_rate" name="risk_free_rate">
-            </div>
-            <div class="col"><b>Beta:</b></div>
-
-            <div class="col">
-                <input type="text" id="beta" name="beta">
-            </div>
-            <div class="col"><b>Market Rate:</b></div>
-
-            <div class="col">
-                <input type="text" id="market_rate_return" name="market_rate_return">
-            </div>
-            <div class="col">
-                <button type="button" class="btn btn-primary" onclick="cb(symbol,growth_rate,terminal_growth,iterations,risk_free_rate,beta,market_rate_return)">Fetch Model</button>
-            </div>
-            </div>
+    
             <div class="col-8">
                 <h2 id="Histogram"></h2>
                 <div id="chart" class="chart" style="height: 300px;border: 1px solid; 
                     box-shadow: 5px 5px 5px #888888;">
+                <div id="png_chart"></div>
                 </div>
 
            </div>    
@@ -87,8 +56,9 @@
     </div>
 
 </body>
+
 <script>
-    cb("MSFT",0.10,0.02,10000,0.04,1.00,0.075)
+    cb("MSFT");
 </script>
 
 </html>
