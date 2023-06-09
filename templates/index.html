@@ -11,35 +11,18 @@
     <title></title>
 
     <script>
-        async function callback() {
+        function callback() {
             let Stock = document.getElementById('stock').value;
             let Period = document.getElementById('period').value;
             let Interval = document.getElementById('interval').value;
-            //alert(Stock+Period+Interval);
-            //return;
-            let response = await fetch("/callback/getStock?data=" + Stock + "&period=" + Period + "&interval=" + Interval);
+
+            let response = await fetch("/stocks/getStock?data=" + Stock + "&period=" + Period + "&interval=" + Interval);
             if (response.ok) {
                 let chartJson = await response.json();
                 if (response.ok) {
-                    //response = await fetch("/callback/getInfo?data=" + Stock);
-                    //let infoJson = await response.json();
-                    //info(infoJson);
                     Plotly.newPlot('chart', chartJson, {});
                 } 
-            } else {
-                alert("HTTP-Error: " + response.status + "on getStock");
-            }
-            
-            function info(json) {
-                let name = document.getElementById('companyName');
-                name.innerHTML = json.shortName;
-                name = document.getElementById('symbol');
-                name.innerHTML = json.symbol;
-                name = document.getElementById('dayHigh');
-                name.innerHTML = json.dayHigh;
-                name = document.getElementById('dayLow');
-                name.innerHTML = json.dayLow;
-            }
+            } 
         }
     
     </script>
@@ -56,7 +39,7 @@
         <div class="row">
             <div class="col"><b>Select stock</b></div>
             <div class="col">
-                <select id="stock" class="form-select" aria-label="Select" )>
+                <select id="stock" class="form-select" aria-label="Select">
                     <option selected value="MSFT">Microsoft</option>
                     <option value="META">Facebook</option>
                     <option value=AAPL>Apple</option>
@@ -66,7 +49,7 @@
             <div class="col"><b>for period</b></div>
 
             <div class="col">
-                <select id="period" class="form-select" aria-label="Select" )>
+                <select id="period" class="form-select" aria-label="Select">
                     <option selected value="1d">1 day</option>
                     <option value="5d">5 days</option>
                     <option value="1mo">1 month</option>
@@ -83,7 +66,7 @@
             <div class="col"><b>Interval</b></div>
 
             <div class="col">
-                <select id="interval" class="form-select" aria-label="Select" )>
+                <select id="interval" class="form-select" aria-label="Select">
                     <option selected value="1m">1 minute</option>
                     <option value="2m">2 minutes</option>
                     <option value="5m">5 minutes</option>
@@ -101,16 +84,6 @@
             </div>
             <div class="col">
                 <button type="button" class="btn btn-primary" onclick="callback()">Fetch stock</button>
-            </div>
-            <div class="w-100" style="padding:10px;text-align:right;font-size: small;"><i>Note: not all intervals are
-                    valid for all periods</i></div>
-                
-            </div>
-            <div class="col-9">
-                <h2 id="companyName"></h2>
-                <div id="chart" class="chart" style="height: 300px;border: 1px solid; 
-                    box-shadow: 5px 5px 5px #888888;">
-                </div>
             </div>
             <div class="col-12" style="font-size:smaller;padding:10px;text-align: right;">
                 <i>The data is, to the best of our knowledge, correct but cannot be guarenteed to be so</i>

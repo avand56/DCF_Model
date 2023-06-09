@@ -1,4 +1,4 @@
-from flask import Flask, config, render_template, request,redirect, url_for
+from flask import Flask, config, render_template, request, redirect, url_for
 import pandas as pd
 import json
 import plotly
