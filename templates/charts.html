@@ -23,11 +23,32 @@
         }
     </script>
 </head>
-<body style="font-family:arial, sans-serif">
-    <h2>Input Ticker</h2>
-    <input type="text" id="fname" name="fname" onchange="cb(this.value)">
-    <div id="chart" class="chart"></div>
-    <div id="png_chart"></div>
+<body>
+    <div class="container">
+        <div class="row">
+            <div class="col text-light bg-dark" style="margin:20px 0px 20px 0px">
+                <h1 style="padding:20px 0px 20px 0px">Statistical Stock Valuation Model</h1>
+            </div>
+
+        </div>
+            <div>
+            <div class="col"><b>Stock:</b></div>
+            <div class="col">
+                <input type="text" id="fname" name="fname" onchange="cb(this.value)">
+            </div>
+    
+            <div class="col-8">
+                <h2 id="Histogram"></h2>
+                <div id="chart" class="chart" style="height: 300px;border: 1px solid; 
+                    box-shadow: 5px 5px 5px #888888;">
+                <div id="png_chart"></div>
+                </div>
+
+           </div>    
+           
+        </div>
+
+    </div>
 
 </body>
 
