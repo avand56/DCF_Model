@@ -13,10 +13,11 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script>
         function cb() {
-            var symbol = document.getElementById('input').value
+            var symbol = document.getElementById('input1').value
+            var growth = document.getElementById('input2').value
             $.getJSON({
                 url: "/stocks",
-                data: { 'data': symbol },
+                data: { 'data': symbol, 'growth_rate' : growth },
                 success: function (result) {
                     Plotly.react('chart', result, {});;
                 }
@@ -35,7 +36,8 @@
             <div>
             <div class="col"><b>Stock:</b></div>
             <div class="col">
-                <input type="text" id="input">
+                <input type="text" id="input1">
+                <input type="number" id="input2">
                 <button onclick="cb()">Fetch stock</button>
             </div>
     

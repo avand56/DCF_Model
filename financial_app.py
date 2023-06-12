@@ -10,18 +10,18 @@ app = Flask(__name__)
 
 @app.route('/stocks', methods = ['POST', 'GET'])
 def cb():
-    return gm(request.args.get('data'))
+    return gm(request.args.get('data'), request.args.get('growth_rate'))
 
     
 @app.route('/')
 def index():
     return render_template('charts.html')
 
-def gm(symbol="MSFT"):
+def gm(symbol="MSFT", growth_rate = 0.10):
 
     output_distribution=run_mcs(
         symbol, 
-        0.10, 
+        growth_rate, 
         0.04, 
         10000, 
         0.04, 
@@ -31,7 +31,7 @@ def gm(symbol="MSFT"):
   
     # Create a histogram
     fig = px.histogram(output_distribution,
-        nbins=50, template="seaborn")
+        nbins=50, template="seaborn", x='Market Cap', y="Simulation Outcomes",title="Stock Market Cap Valuation")
 
     # Create a JSON representation of the graph
     graphJSON = json.dumps(fig, cls=plotly.utils.PlotlyJSONEncoder)
