@@ -12,7 +12,8 @@
     <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script>
-        function cb(symbol) {
+        function cb() {
+            var symbol = document.getElementById('input').value
             $.getJSON({
                 url: "/stocks",
                 data: { 'data': symbol },
@@ -34,9 +35,8 @@
             <div>
             <div class="col"><b>Stock:</b></div>
             <div class="col">
-                <input type="text" id="fname" name="fname">
-            <div class="col">
-                <button type="button" class="btn btn-primary" onclick="cb(this.value)">Fetch stock</button>
+                <input type="text" id="input">
+                <button onclick="cb()">Fetch stock</button>
             </div>
     
             <div class="col-8">
@@ -55,6 +55,6 @@
 </body>
 
 <script>
-    cb("MSFT");
+    cb();
 </script>
 </html>
