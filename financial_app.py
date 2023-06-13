@@ -10,7 +10,7 @@ app = Flask(__name__)
 
 @app.route('/stocks', methods = ['POST', 'GET'])
 def cb():
-    return gm(request.args.get('data'), int(request.args.get('growth_rate')))
+    return gm(request.args.get('data'), float(request.args.get('growth_rate')))
 
     
 @app.route('/')
