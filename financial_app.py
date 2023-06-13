@@ -31,7 +31,8 @@ def gm(symbol="MSFT", growth_rate = 0.10):
   
     # Create a histogram
     fig = px.histogram(output_distribution,
-        nbins=50, template="seaborn")#, x="values", y="counts", labels=(values:"Market Cap ($)",count=''))
+        nbins=50, template="seaborn", x="value", y="count", 
+        labels=dict(value="Market Cap ($)", count="Simulation Outcomes"))
 
     # Create a JSON representation of the graph
     graphJSON = json.dumps(fig, cls=plotly.utils.PlotlyJSONEncoder)
