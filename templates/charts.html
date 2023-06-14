@@ -61,10 +61,37 @@
             <div class="col">
                 <input type="number" id="input6">
             </div>
+
             <div class="col"><b>Market Rate Return:</b></div>
             <div class="col">
-                <input type="number" id="input7">
+                <select id="input7" aria-label="Select">
+                    <option selected value="0.075">7.5%</option>
+                    <option value="0.00">0%</option>
+                    <option value="-0.002">-2%</option>
+                    <option value="-0.004">-4%</option>
+                    <option value="-0.006">-6%</option>
+                    <option value="-0.008">-8%</option>
+                    <option value="-0.009">-9%</option>
+                    <option value="-0.010">-10%</option>
+                    <option value="-0.012">-12%</option>
+                    <option value="-0.015">-15%</option>
+                    <option value="-0.020">-20%</option>
+                    <option value="0.002">2%</option>
+                    <option value="0.004">4%</option>
+                    <option value="0.006">6%</option>
+                    <option value="0.008">8%</option>
+                    <option value="0.009">9%</option>
+                    <option value="0.010">10%</option>
+                    <option value="0.012">12%</option>
+                    <option value="0.015">15%</option>
+                    <option value="0.020">20%</option>
+                    <option value="0.025">25%</option>
+                    <option value="0.030">30%</option>
+
+                </select>
+
             </div>
+
             <div>
                 <button type="button" class="btn btn-primary" onclick="cb()">Fetch stock</button>
             </div>
