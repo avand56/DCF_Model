@@ -15,14 +15,14 @@
         function cb() {
             var symbol = document.getElementById('input1').value
             var growth = document.getElementById('input2').value
-            //var terminal = document.getElementById('input3').value
-            //var iter = document.getElementById('input4').value
-            //var risk_free = document.getElementById('input5').value
-            //var beta = document.getElementById('input6').value
-            //var market_rate = document.getElementById('input7').value
+            var terminal = document.getElementById('input3').value
+            var iter = document.getElementById('input4').value
+            var risk_free = document.getElementById('input5').value
+            var beta = document.getElementById('input6').value
+            var market_rate = document.getElementById('input7').value
             $.getJSON({
                 url: "/stocks",
-                data: { 'data': symbol, 'growth_rate' : growth },//, 'terminal_rate': terminal, 'iterations': iter, 'risk_free_rate': risk_free, 'beta': beta, 'market_rate_return': market_rate },
+                data: { 'data': symbol, 'growth_rate' : growth, 'terminal_rate': terminal, 'iterations': iter, 'risk_free_rate': risk_free, 'beta': beta, 'market_rate_return': market_rate },
                 success: function (result) {
                     Plotly.react('chart', result, {});;
                 }
@@ -36,7 +36,6 @@
             <div class="col text-light bg-dark" style="margin:20px 0px 20px 0px">
                 <h1 style="padding:20px 0px 20px 0px">Statistical Stock Valuation Model</h1>
             </div>
-
             <div>
             <div class="col"><b>Stock:</b></div>
             <div class="col">
@@ -45,6 +44,26 @@
             <div class="col"><b>Growth Rate:</b></div>
             <div class="col">
                 <input type="number" id="input2">
+            </div>
+            <div class="col"><b>Terminal Growth Rate:</b></div>
+            <div class="col">
+                <input type="number" id="input3">
+            </div>
+            <div class="col"><b>Iterations:</b></div>
+            <div class="col">
+                <input type="number" id="input4">
+            </div>
+            <div class="col"><b>Risk Free Rate:</b></div>
+            <div class="col">
+                <input type="number" id="input5">
+            </div>
+            <div class="col"><b>Beta:</b></div>
+            <div class="col">
+                <input type="number" id="input6">
+            </div>
+            <div class="col"><b>Market Rate Return:</b></div>
+            <div class="col">
+                <input type="number" id="input7">
             </div>
             <div>
                 <button type="button" class="btn btn-primary" onclick="cb()">Fetch stock</button>
