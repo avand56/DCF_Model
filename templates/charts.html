@@ -22,7 +22,7 @@
             //var market_rate = document.getElementById('input7').value
             $.getJSON({
                 url: "/stocks",
-                data: { 'data': symbol, 'growth_rate' : growth }//, 'terminal_rate': terminal, 'iterations': iter, 'risk_free_rate': risk_free, 'beta': beta, 'market_rate_return': market_rate },
+                data: { 'data': symbol, 'growth_rate' : growth },//, 'terminal_rate': terminal, 'iterations': iter, 'risk_free_rate': risk_free, 'beta': beta, 'market_rate_return': market_rate },
                 success: function (result) {
                     Plotly.react('chart', result, {});;
                 }
