@@ -23,15 +23,10 @@ def gm(symbol="MSFT", growth_rate = 0.10):#, terminal_growth = 0.04, iterations 
         symbol, 
         growth_rate, 
         0.04,
-        10000.0,
+        10000,
         0.04,
         1.0,
         0.08
-        #terminal_growth,
-        #iterations, 
-        #risk_free_rate, 
-        #beta,
-        #market_rate_return
         )
   
     # Create a histogram
