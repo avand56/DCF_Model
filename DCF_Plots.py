@@ -22,7 +22,7 @@ def run_mcs(stock, growth_rate, terminal_growth, iterations, risk_free_rate, bet
     sales, years = predict_sales(fin, growth_rate)
     debt=bal['Total Debt'][2]*1000
     cost_debt = (fin['Net Interest Income'][2]*1000)/debt
-    shares = bal['Ordinary Shares Number'][1]
+    shares = bal['Ordinary Shares Number'][1]*1000
     ebitda_margin = (fin['Normalized EBITDA'][2]*1000)/sales[0]
     depr_percent = (fin['Reconciled Depreciation'][2]*1000)/sales[0]
     ebitda = sales * ebitda_margin
