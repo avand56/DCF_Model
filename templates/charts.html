@@ -37,57 +37,108 @@
                 <h1 style="padding:20px 0px 20px 0px">Statistical Stock Valuation Model</h1>
             </div>
             <div>
-            <div class="col"><b>Stock:</b></div>
-            <div class="col">
+                <div class="col"><b>Stock:</b></div>
+                <div class="col">
                 <input type="text" id="input1">
             </div>
-            <div class="col"><b>Growth Rate:</b></div>
+            <div class="col"><b>Growth Rate</b></div>
             <div class="col">
-                <input type="number" id="input2">
+                <select id="input2" class="form-select" aria-label="Select">
+                    <option selected value="0.1">10%</option>
+                    <option value="0.02">2%</option>
+                    <option value="0.04">4%</option>
+                    <option value="0.06">6%</option>
+                    <option value="0.08">8%</option>
+                    <option value="0.12">12%</option>
+                    <option value="0.15">15%</option>
+                    <option value="0.20">20%</option>
+                    <option value="0.30">30%</option>
+                    <option value="0.50">50%</option>
+                    <option value="1.0">100%</option>
+                </select>
             </div>
-            <div class="col"><b>Terminal Growth Rate:</b></div>
+            <div class="col"><b>Terminal Growth</b></div>
             <div class="col">
-                <input type="number" id="input3">
+                <select id="input3" class="form-select" aria-label="Select">
+                    <option selected value="0.1">10%</option>
+                    <option value="0.02">2%</option>
+                    <option value="0.04">4%</option>
+                    <option value="0.06">6%</option>
+                    <option value="0.08">8%</option>
+                    <option value="0.12">12%</option>
+                    <option value="0.15">15%</option>
+                    <option value="0.20">20%</option>
+                    <option value="0.30">30%</option>
+                    <option value="0.50">50%</option>
+                    <option value="1.0">100%</option>
+                </select>
             </div>
-            <div class="col"><b>Iterations:</b></div>
+            <div class="col"><b>Iterations</b></div>
             <div class="col">
-                <input type="number" id="input4">
+                <select id="input4" class="form-select" aria-label="Select">
+                    <option selected value="10000">10000</option>
+                    <option value="1000">1000</option>
+                    <option value="5000">5000</option>
+                    <option value="20000">20000</option>
+                </select>
             </div>
-            <div class="col"><b>Risk Free Rate:</b></div>
+            <div class="col"><b>Risk Free Rate</b></div>
             <div class="col">
-                <input type="number" id="input5">
+                <select id="input5" class="form-select" aria-label="Select">
+                    <option selected value="0.035">3.5%</option>
+                    <option value="0.001">0.1%</option>
+                    <option value="0.0025">0.25%</option>
+                    <option value="0.005">0.50%</option>
+                    <option value="0.01">1%</option>
+                    <option value="0.015">1.5%</option>
+                    <option value="0.02">2%</option>
+                    <option value="0.025">2.5%</option>
+                    <option value="0.03">3%</option>
+                    <option value="0.04">4%</option>
+                    <option value="0.045">4.5%</option>
+                    <option value="0.005">5%</option>
+                </select>
             </div>
-            <div class="col"><b>Beta:</b></div>
-            <div class="col">
-                <input type="number" id="input6">
+            </div>
+                <div class="col"><b>Beta:</b></div>
+                <div class="col">
+                <select id="input6" class="form-select" aria-label="Select">
+                    <option selected value="1.00">1.00</option>
+                    <option value="0.50">0.50</option>
+                    <option value="0.75">0.75</option>
+                    <option value="1.25">1.25</option>
+                    <option value="1.50">1.50</option>
+                    <option value="1.75">1.75</option>
+                    <option value="2.00">2.00</option>
+                    <option value="2.50">2.50</option>
+                </select>
             </div>
 
             <div class="col"><b>Market Rate Return:</b></div>
             <div class="col">
-                <select id="input7" aria-label="Select">
+                <select id="input7" class="form-select" aria-label="Select">
                     <option selected value="0.075">7.5%</option>
                     <option value="0.00">0%</option>
-                    <option value="-0.002">-2%</option>
-                    <option value="-0.004">-4%</option>
-                    <option value="-0.006">-6%</option>
-                    <option value="-0.008">-8%</option>
-                    <option value="-0.009">-9%</option>
-                    <option value="-0.010">-10%</option>
-                    <option value="-0.012">-12%</option>
-                    <option value="-0.015">-15%</option>
-                    <option value="-0.020">-20%</option>
-                    <option value="0.002">2%</option>
-                    <option value="0.004">4%</option>
-                    <option value="0.006">6%</option>
-                    <option value="0.008">8%</option>
-                    <option value="0.009">9%</option>
-                    <option value="0.010">10%</option>
-                    <option value="0.012">12%</option>
-                    <option value="0.015">15%</option>
-                    <option value="0.020">20%</option>
-                    <option value="0.025">25%</option>
-                    <option value="0.030">30%</option>
-
+                    <option value="-0.02">-2%</option>
+                    <option value="-0.04">-4%</option>
+                    <option value="-0.06">-6%</option>
+                    <option value="-0.08">-8%</option>
+                    <option value="-0.09">-9%</option>
+                    <option value="-0.10">-10%</option>
+                    <option value="-0.12">-12%</option>
+                    <option value="-0.15">-15%</option>
+                    <option value="-0.20">-20%</option>
+                    <option value="0.02">2%</option>
+                    <option value="0.04">4%</option>
+                    <option value="0.06">6%</option>
+                    <option value="0.08">8%</option>
+                    <option value="0.09">9%</option>
+                    <option value="0.10">10%</option>
+                    <option value="0.12">12%</option>
+                    <option value="0.15">15%</option>
+                    <option value="0.20">20%</option>
+                    <option value="0.25">25%</option>
+                    <option value="0.30">30%</option>
                 </select>
 
             </div>
