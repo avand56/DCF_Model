@@ -20,14 +20,15 @@ from sklearn.linear_model import LinearRegression
 def run_mcs(stock, growth_rate, terminal_growth, iterations, risk_free_rate, beta, market_rate_return):
     cash, bal, fin = scraping(stock)
     sales, years = predict_sales(fin, growth_rate)
-    debt=bal['Total Debt'][2]
-    cost_debt = fin['Net Interest Income'][2]/debt
-    ebitda_margin = fin['Normalized EBITDA'][2]/sales[0]
-    depr_percent = fin['Reconciled Depreciation'][2]/sales[0]
+    debt=bal['Total Debt'][2]*1000
+    cost_debt = (fin['Net Interest Income'][2]*1000)/debt
+    shares = bal['Ordinary Shares Number'][1]
+    ebitda_margin = (fin['Normalized EBITDA'][2]*1000)/sales[0]
+    depr_percent = (fin['Reconciled Depreciation'][2]*1000)/sales[0]
     ebitda = sales * ebitda_margin
     depreciation = sales * depr_percent
     ebit = ebitda - depreciation
-    nwc_percent = bal['Working Capital'][2]/sales[0]
+    nwc_percent = (bal['Working Capital'][1]*1000)/sales[0]
     nwc = sales * nwc_percent
     change_in_nwc = nwc.shift(1) - nwc 
     capex_percent = depr_percent
@@ -38,7 +39,7 @@ def run_mcs(stock, growth_rate, terminal_growth, iterations, risk_free_rate, bet
     tax_payment = tax_payment.apply(lambda x: min(x, 0))
     #free_cash_flow = cash['Free Cash Flow'] #ebit + depreciation + tax_payment + capex + change_in_nwc
     free_cash_flow = ebit + depreciation + tax_payment + capex + change_in_nwc
-    equity = bal['Common Stock Equity'][2]
+    equity = bal['Common Stock Equity'][1]*1000
     risk_premium = market_rate_return -risk_free_rate
     cost_equity = risk_free_rate + beta * risk_premium
     cost_of_capital = compute_wacc(cost_debt, tax_rate, debt, equity, cost_equity)
@@ -71,7 +72,7 @@ def run_mcs(stock, growth_rate, terminal_growth, iterations, risk_free_rate, bet
                     (cost_of_capital - terminal_growth))
         free_cash_flow[-1] += terminal_value
         discount_factors = compute_discount_factors(cost_of_capital)
-        dcf_value = sum(free_cash_flow[1:] * discount_factors)
+        dcf_value = sum(free_cash_flow[1:] * discount_factors)/shares
         output_distribution.append(dcf_value)
 
     return output_distribution

@@ -106,7 +106,7 @@ def scraping(symbol):
 def predict_sales(fin, growth_rate):
     years = ['2023A', '2024B', '2025P', '2026P', '2027P','2028P']
     sales = pd.Series(index=years, dtype = 'float64')
-    sales['2023A'] = fin['Total Revenue'][1]
+    sales['2023A'] = fin['Total Revenue'][1]*1000
     for year in range(1, 6):
         sales[year] = sales[year - 1] * (1 + growth_rate)
     return sales, years
